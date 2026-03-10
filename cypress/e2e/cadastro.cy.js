@@ -57,5 +57,11 @@ describe('Formulário de Ponto de Doação', () => {
       cy.get('button[type="submit"]').click()
       cy.get('.alert-error').should('be.visible').and('have.text', 'Informe um número maior que zero')
     })
+
+    it('Deve exibir mensagem de erro ao informar um CEP inválido', () => {
+      cy.get('input[name="cep"]').clear().type('0000000')
+      cy.get('input[value="Buscar CEP"]').click()
+      cy.get('.alert-error').should('be.visible').and('have.text', 'Informe um CEP válido')
+    })
   })
 })
